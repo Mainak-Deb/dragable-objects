@@ -151,11 +151,11 @@ setoutput(x){
     }
     if (mouseX > this.input[0]-this.port/2 && mouseX < this.input[0]+this.port/2 && mouseY > this.input[1]-this.port/2 && mouseY < this.input[1]+this.port/2) {
       print(this.current_pos)
-        return this.current_pos
+        return [this.current_pos,"input"]
     } 
     if (mouseX > this.output[0]-this.port/2 && mouseX < this.output[0]+this.port/2 && mouseY > this.output[1]-this.port/2 && mouseY < this.output[1]+this.port/2) {
       print(this.current_pos)
-      return this.current_pos
+      return [this.current_pos,"output"]
     } }
   }
 
@@ -231,7 +231,7 @@ class NODE {
         print(this.value)
       }else{
         print(this.current_pos)
-        return this.current_pos
+        return [this.current_pos,"both"]
       }
     }
   }

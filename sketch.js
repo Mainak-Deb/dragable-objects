@@ -13,6 +13,12 @@ let visited=[]
 let queue=[]
 let lights=50
 let connect_type;
+let mainconnect;
+let undo_stack=[]
+let redo_stack=[]
+
+
+
 
 
 function bfs(){
@@ -207,22 +213,44 @@ function draw() {
 function mousePressed() {
   for(i=0;i<shpcount;i++){
     now=shapes[i].pressed(run);
-    print(now)
+    
     if(!state){
       if(now!=null){
-          connect=now;
+          connect=now[0];
+          print(now)
+          mainconnect=now
+          if(now[1]=="both"){
+            let pos=now[0]
+            if((pos>=lights) && (pos<2*lights)){
+              connect_type="input"
+              print("input")
+            }else if((pos>=0) && (pos<lights)){
+              connect_type="output"
+              print("output")
+            }
+          }else{
+            connect_type=now[1]
+          }
+          
           state=true
-          console.log("state",connect,state)
+          console.log("state",connect,connect_type,state)
       }
     }else{
       if(now!=null){
-        if(!((i>=0) && (i<lights))){
-          shapes[connect].setoutput(now)
-          shapes[now].setinput(connect)
+        if(now[1]!=mainconnect[1]) {
           state=false
+          if(connect_type=="output"){
+            shapes[connect].setoutput(now[0])
+            shapes[now[0]].setinput(connect)
+            undo_stack.push([connect,now[0]])
+          }else if(connect_type=="input"){
+            shapes[connect].setinput(now[0])
+            shapes[now[0]].setoutput(connect)
+            undo_stack.push([now[0],connect])
+          }
+          print(undo_stack)
           console.log("state",connect,state)
-          print(shapes[connect].outputvalues)
-          print(shapes[now].inputvalues)
+          
         }
       }
     }
