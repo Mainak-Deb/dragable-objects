@@ -81,7 +81,7 @@ setoutput(x){
    
 
 //input color
-    if (this.input_rollover) {
+    if ((this.input_rollover) ||(this.value)) {
       fill(255,60,60);
       stroke(255,60,60);
     } else {  
@@ -96,7 +96,7 @@ setoutput(x){
 
 
 //output color
-    if (this.output_rollover) {
+    if( (this.output_rollover)||(this.value)) {
       fill(255,60,60);
       stroke(255,60,60);
    } else {  
@@ -110,8 +110,13 @@ setoutput(x){
 
 
     //rectangle color
-    stroke(0);
+    
     strokeWeight(4)
+    if(this.value){
+      stroke(255,60,60);
+    }else{
+      stroke(0);
+    }
     if (this.dragging) {
     fill(this.r*90,this.g*90,this.b*90);         
     } else if (this.rollover) {
