@@ -21,66 +21,6 @@ let redo_stack=[]
 
 
 
-function bfs(){
-
-  for(let i=lights;i<2*lights;i++){
-    let a=bulb_next(shapes[i])
-    if(a.length!=0){
-      queue.push(shapes[i])
-      visited.push(shapes[i])
-    }
-  }
-  console.log("visited",visited)
-  console.log("queue",queue)
-  while(queue.length>0){
-    let a=nextnodes(queue[0])
-    if(a.length!=0){
-      queue=queue.concat(a)
-      visited=visited.concat(a)
-      print(queue)
-      print(visited)
-    }
-    queue.shift()
-  }
-
-
-}
-
-function bulb_next(a){
-  b=a.inputvalues
-  arr=[]
-  let pos=a.current_pos;
-  for(let i=0;i<b.length;i++){
-    if(!visited.includes(shapes[b[i]])){
-      if(shapes[b[i]].what()!="node"){
-       arr.push(shapes[b[i]])
-      }else if((pos>=lights) && (pos<2*lights)){
-       arr.push(shapes[b[i]])
-      }
-    }
-   print(shapes[b[i]])
-  }
-  return arr;
-}
-
-
-
-
-function nextnodes(a){
-   b=a.inputvalues
-   print(b)
-   arr=[]
-   let pos=a.current_pos;
-   for(let i=0;i<b.length;i++){
-
-     if((!visited.includes(shapes[b[i]])) && (shapes[b[i]].what()!="node")){
-        arr.push(shapes[b[i]])
-     } print(shapes[b[i]])
-   }
-   return arr;
-}
-
-
 
 
 
@@ -110,6 +50,20 @@ function setup() {
   runb.position(width-200, 4);
   runb.mousePressed(runthis);
   
+  
+  
+  undo = createButton('undo');
+  undo.position(width-150, 4);
+  undo.mousePressed(undothis);
+  
+
+  
+  
+  redo = createButton('redo');
+  redo.position(width-100, 4);
+  redo.mousePressed(redothis);
+  
+
 
   for(i=0;i<lights;i++){
     shp=new NODE(20,120+ i*60,shpcount);
@@ -210,118 +164,7 @@ function draw() {
   }
 }
 
-function mousePressed() {
-  for(i=0;i<shpcount;i++){
-    now=shapes[i].pressed(run);
-    
-    if(!state){
-      if(now!=null){
-          connect=now[0];
-          print(now)
-          mainconnect=now
-          if(now[1]=="both"){
-            let pos=now[0]
-            if((pos>=lights) && (pos<2*lights)){
-              connect_type="input"
-              print("input")
-            }else if((pos>=0) && (pos<lights)){
-              connect_type="output"
-              print("output")
-            }
-          }else{
-            connect_type=now[1]
-          }
-          
-          state=true
-          console.log("state",connect,connect_type,state)
-      }
-    }else{
-      if(now!=null){
-        if(now[1]!=mainconnect[1]) {
-          state=false
-          if(connect_type=="output"){
-            shapes[connect].setoutput(now[0])
-            shapes[now[0]].setinput(connect)
-            undo_stack.push([connect,now[0]])
-          }else if(connect_type=="input"){
-            shapes[connect].setinput(now[0])
-            shapes[now[0]].setoutput(connect)
-            undo_stack.push([now[0],connect])
-          }
-          print(undo_stack)
-          console.log("state",connect,state)
-          
-        }
-      }
-    }
-  }
-}
-
-function mouseReleased() {
-  if(!run){
-     for(i=0;i<shpcount;i++){
-      shapes[i].released();
-    }
-  }
-}
-
-function and(){
-  findstartpos();
-  print(shapes);
-  shp=new Draggable(startpos, 40, 50, 50,shpcount,"and",240, 156, 0);
-  shpcount++;
-  shapes.push(shp)
-}
-
-function or(){
-  findstartpos();print(shapes);
-  shp=new Draggable(startpos, 40, 50, 50,shpcount,"or",0, 227, 19);
-  shpcount++;
-  shapes.push(shp)
-}
-
-function not(){
-  findstartpos();print(shapes);
-  shp=new Draggable(startpos, 40, 50, 50,shpcount,"not",224, 11, 65);
-  shpcount++;
-  shapes.push(shp)
-}
-
-function xor(){
-  findstartpos();print(shapes);
-  shp=new Draggable(startpos, 40, 50, 50,shpcount,"xor",195, 0, 217);
-  shpcount++;
-  shapes.push(shp)
-}
-
-function findstartpos(){
-  startpos=35;
-   for(i=0;i<shpcount;i++){
-     if(shapes[i].y<=50){
-      startpos=shapes[i].x+shapes[i].w+52;
-    }
-   }
-   print(startpos);
-}
 
 
-
-
-
-function runthis(){
-  if(run){
-    run=false;
-    bg=155
-    
-  }
-  else{
-    queue=[]
-    visited=[]
-    bfs()
-    run=true;
-    bg=50
-  }
-  
-}
 
 
