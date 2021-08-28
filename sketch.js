@@ -24,7 +24,6 @@ let redo_stack=[]
 
 
 
-
 function setup() {
   createCanvas(1540, 65*lights);
   
@@ -44,23 +43,28 @@ function setup() {
   xorb.position(108, 4);
   xorb.mousePressed(xor);
   
+  jointb = createButton('joint');
+  jointb.position(148, 4);
+  jointb.mousePressed(joinnode);
   
   
-  runb = createButton('run');
-  runb.position(width-200, 4);
+  
+  
+  runb = createButton('▶run');
+  runb.position(width-220, 4);
   runb.mousePressed(runthis);
   
   
   
-  undo = createButton('undo');
-  undo.position(width-150, 4);
+  undo = createButton('↩undo');
+  undo.position(width-170, 4);
   undo.mousePressed(undothis);
   
 
   
   
-  redo = createButton('redo');
-  redo.position(width-100, 4);
+  redo = createButton('↪redo');
+  redo.position(width-110, 4);
   redo.mousePressed(redothis);
   
 
@@ -142,6 +146,23 @@ function draw() {
       }
     }
   }
+  if(state){
+    let linestart
+    if(connect_type=="output"){
+      linestart=shapes[connect].output
+    }else if(connect_type=="input"){
+      linestart=shapes[connect].input
+    }
+    stroke(0)
+    strokeWeight(2)
+    line(linestart[0],linestart[1],mouseX,mouseY)
+    
+  }
+
+
+
+
+
   if(run){
     //print(visited)
     for(let i=visited.length-1;i>=0;i--){
@@ -158,13 +179,15 @@ function draw() {
         }else if(type=="node"){
           visited[i].value=or_func(a)
           print(visited[i].value)
+        }else if(type=="joint"){
+          visited[i].value=or_func(a)
+          print(visited[i].value)
         }
-        print(visited[i])
+        
     }
   }
+ 
 }
-
-
 
 
 

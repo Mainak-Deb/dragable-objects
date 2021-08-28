@@ -39,5 +39,12 @@ function and(){
     shapes.push(shp)
   }
   
+  function joinnode(){
+    findstartpos();print(shapes);
+    shp=new joint(startpos, 40, shpcount);
+    shpcount++;
+    shapes.push(shp)
+  }
   
+   
   
