@@ -70,10 +70,19 @@ function setup() {
   displayb.mousePressed(display);
   
   
-  displayb = createButton('Clock');
-  displayb.position(462, 4);
-  displayb.mousePressed(clock);
+  clockb = createButton('Clock');
+  clockb.position(462, 4);
+  clockb.mousePressed(clock);
   
+  clockinput = createInput('50');
+  clockinput.position(510, 4);
+  clockinput.size(30);
+  clockinput.input(setclockspeed);
+
+  
+  triggerb = createButton('Trigger');
+  triggerb.position(552, 4);
+  triggerb.mousePressed(edge_triggering);
   
   
   
@@ -174,7 +183,7 @@ function draw() {
       shapes[i].update();
       shapes[i].show();
       if(shapes[i].txt=="clock"){
-        shapes[i].setclock(counter,50)
+        shapes[i].setclock(counter,clockspeed)
       }
       outputnodes=shapes[i].outputvalues
       for(let j=0;j<outputnodes.length;j++){
@@ -237,6 +246,15 @@ function draw() {
           visited[i].value=or_func(a)
         }else if(type=="display"){
           visited[i].value=display_func(a)
+        }else if(type=="trigger"){
+          let trig=or_func(a)
+          if(trig!=visited[i].prev){
+            visited[i].value=true;
+            visited[i].prev=trig
+          }else{
+            visited[i].value=false;
+            visited[i].prev=trig
+          }
         }
         
     }

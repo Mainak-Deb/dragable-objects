@@ -87,3 +87,12 @@ function and(){
   
    
   
+  function edge_triggering(){
+    findstartpos();print(shapes);
+    shp=new Trigger(startpos, 40, 30,30,shpcount,"trigger",255,255,255);
+    shpcount++;
+    shapes.push(shp)
+  }
+  
+   
+  

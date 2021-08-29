@@ -68,3 +68,8 @@ function display_func(a){
     }
     return sum
 }
+
+
+function setclockspeed(){
+    clockspeed= this.value()
+}
