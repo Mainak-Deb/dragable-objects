@@ -1,7 +1,6 @@
 // Click and Drag an object
 
-let shape1;
-let shape2;
+let counter=0;
 let shapes=[];
 let shpcount=0;
 let startpos=100;
@@ -16,7 +15,9 @@ let connect_type;
 let mainconnect;
 let undo_stack=[]
 let redo_stack=[]
-
+let clockspeed=50
+let grid=false;
+let gridline=[0, 157, 230]
 
 
 
@@ -27,26 +28,58 @@ let redo_stack=[]
 function setup() {
   createCanvas(1540, 65*lights);
   
-  andb = createButton('and');
+  andb = createButton('AND');
   andb.position(0, 4);
   andb.mousePressed(and);
   
-  orb = createButton('or');
-  orb.position(40, 4);
+  orb = createButton('OR');
+  orb.position(45, 4);
   orb.mousePressed(or);
   
-  notb = createButton('not');
-  notb.position(70, 4);
+  notb = createButton('NOT');
+  notb.position(82, 4);
   notb.mousePressed(not);
   
-  xorb = createButton('xor');
-  xorb.position(108, 4);
+  xorb = createButton('XOR');
+  xorb.position(128, 4);
   xorb.mousePressed(xor);
   
-  jointb = createButton('joint');
-  jointb.position(148, 4);
+  nandb = createButton('NAND');
+  nandb.position(174, 4);
+  nandb.mousePressed(nand);
+  
+  norb = createButton('NOR');
+  norb.position(230, 4);
+  norb.mousePressed(nor);
+  
+  xnorb = createButton('XNOR');
+  xnorb.position(277, 4);
+  xnorb.mousePressed(xnor);
+  
+
+
+
+
+  jointb = createButton('Joint');
+  jointb.position(354, 4);
   jointb.mousePressed(joinnode);
   
+  
+  displayb = createButton('Display');
+  displayb.position(400, 4);
+  displayb.mousePressed(display);
+  
+  
+  displayb = createButton('Clock');
+  displayb.position(462, 4);
+  displayb.mousePressed(clock);
+  
+  
+  
+  
+  runb = createButton('Grid');
+  runb.position(width-270, 4);
+  runb.mousePressed(gridthis);
   
   
   
@@ -87,6 +120,19 @@ function draw() {
   
   background(bg);
   
+  if(grid){
+    stroke(gridline[0],gridline[1],gridline[2])
+    strokeWeight(1)
+    for(let i=0;i<2.5*lights;i++){
+      line(0,120+i*30,width,120+ i*30)
+    }
+    for(let i=0;i<lights;i++){
+      line(50+i*30,32,50+i*30,height)
+    }
+  }
+
+
+
   stroke(0)
   strokeWeight(4)
   fill(55)
@@ -127,6 +173,9 @@ function draw() {
 
       shapes[i].update();
       shapes[i].show();
+      if(shapes[i].txt=="clock"){
+        shapes[i].setclock(counter,50)
+      }
       outputnodes=shapes[i].outputvalues
       for(let j=0;j<outputnodes.length;j++){
           l1=shapes[i].output
@@ -168,25 +217,31 @@ function draw() {
     for(let i=visited.length-1;i>=0;i--){
         let a=visited[i].inputvalues
         let type=visited[i].txt
-        if(type=="and"){
+        if(type=="AND"){
           visited[i].value=and_func(a)
-        }else if(type=="or"){
+        }else if(type=="OR"){
           visited[i].value=or_func(a)
-        }else if(type=="xor"){
+        }else if(type=="XOR"){
           visited[i].value=xor_func(a)
-        }else if(type=="not"){
+        }else if(type=="NOT"){
           visited[i].value=not_func(a)
+        }else if(type=="NAND"){
+          visited[i].value=nand_func(a)
+        }else if(type=="NOR"){
+          visited[i].value=nor_func(a)
+        }else if(type=="XNOR"){
+          visited[i].value=xnor_func(a)
         }else if(type=="node"){
           visited[i].value=or_func(a)
-          print(visited[i].value)
         }else if(type=="joint"){
           visited[i].value=or_func(a)
-          print(visited[i].value)
+        }else if(type=="display"){
+          visited[i].value=display_func(a)
         }
         
     }
   }
- 
+  counter=(counter+1)%100000;
 }
 
 

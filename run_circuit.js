@@ -121,7 +121,7 @@ function runthis(){
     if(run){
       run=false;
       bg=155
-      
+      gridline=[0, 255, 229]
     }
     else{
       queue=[]
@@ -129,8 +129,19 @@ function runthis(){
       bfs()
       run=true;
       bg=50
+      gridline=[80, 207, 2]
     }
-    
+  }
+
+  function gridthis(){
+    if(grid){
+      grid=false;
+    }
+    else{
+      grid=true;
+       
+    }
+    print(grid)
   }
 
 function undothis(){
