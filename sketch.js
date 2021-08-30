@@ -29,31 +29,31 @@ function setup() {
   createCanvas(1540, 65*lights);
   
   andb = createButton('AND');
-  andb.position(0, 4);
+  andb.position(0, 108);
   andb.mousePressed(and);
   
   orb = createButton('OR');
-  orb.position(45, 4);
+  orb.position(45, 108);
   orb.mousePressed(or);
   
   notb = createButton('NOT');
-  notb.position(82, 4);
+  notb.position(82, 108);
   notb.mousePressed(not);
   
   xorb = createButton('XOR');
-  xorb.position(128, 4);
+  xorb.position(128, 108);
   xorb.mousePressed(xor);
   
   nandb = createButton('NAND');
-  nandb.position(174, 4);
+  nandb.position(174, 108);
   nandb.mousePressed(nand);
   
   norb = createButton('NOR');
-  norb.position(230, 4);
+  norb.position(230, 108);
   norb.mousePressed(nor);
   
   xnorb = createButton('XNOR');
-  xnorb.position(277, 4);
+  xnorb.position(277, 108);
   xnorb.mousePressed(xnor);
   
 
@@ -61,52 +61,52 @@ function setup() {
 
 
   jointb = createButton('Joint');
-  jointb.position(354, 4);
+  jointb.position(354, 108);
   jointb.mousePressed(joinnode);
   
   
   displayb = createButton('Display');
-  displayb.position(400, 4);
+  displayb.position(400, 108);
   displayb.mousePressed(display);
   
   
   clockb = createButton('Clock');
-  clockb.position(462, 4);
+  clockb.position(462, 108);
   clockb.mousePressed(clock);
   
   clockinput = createInput('50');
-  clockinput.position(510, 4);
+  clockinput.position(510, 108);
   clockinput.size(30);
   clockinput.input(setclockspeed);
 
   
   triggerb = createButton('Trigger');
-  triggerb.position(552, 4);
+  triggerb.position(552, 108);
   triggerb.mousePressed(edge_triggering);
   
   
   
   runb = createButton('Grid');
-  runb.position(width-270, 4);
+  runb.position(width-270, 108);
   runb.mousePressed(gridthis);
   
   
   
   runb = createButton('▶run');
-  runb.position(width-220, 4);
+  runb.position(width-220, 108);
   runb.mousePressed(runthis);
   
   
   
   undo = createButton('↩undo');
-  undo.position(width-170, 4);
+  undo.position(width-170, 108);
   undo.mousePressed(undothis);
   
 
   
   
   redo = createButton('↪redo');
-  redo.position(width-110, 4);
+  redo.position(width-110, 108);
   redo.mousePressed(redothis);
   
 
@@ -130,7 +130,7 @@ function draw() {
   background(bg);
   
   if(grid){
-    stroke(gridline[0],gridline[1],gridline[2])
+    stroke(gridline[0],gridline[1],gridline[2],155)
     strokeWeight(1)
     for(let i=0;i<2.5*lights;i++){
       line(0,120+i*30,width,120+ i*30)
@@ -141,7 +141,9 @@ function draw() {
   }
 
 
-
+  fill(0)
+  stroke(255)
+  rect(0,0,width,40)
   stroke(0)
   strokeWeight(4)
   fill(55)
