@@ -28,7 +28,7 @@ function requestChar(delay = 0) {
 function start() {
   index = 0;
  tt = title.textContent.trim();
-  title.textContent = "|  ";
+  title.textContent = "<  ";
   requestChar(1000);
 }
 
