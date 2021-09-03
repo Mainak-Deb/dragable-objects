@@ -12,6 +12,7 @@ let visited=[]
 let queue=[]
 let lights=50
 let connect_type;
+let connect_port_number;
 let mainconnect;
 let undo_stack=[]
 let redo_stack=[]
@@ -84,8 +85,15 @@ function setup() {
   triggerb.position(552, 108);
   triggerb.mousePressed(edge_triggering);
   
+  alub = createButton('ALU');
+  alub.position(612, 108);
+  alub.mousePressed(alu);
   
+  memoryb = createButton('8-bit memory');
+  memoryb.position(662, 108);
+  memoryb.mousePressed(register);
   
+
   runb = createButton('Grid');
   runb.position(width-270, 108);
   runb.mousePressed(gridthis);
@@ -257,8 +265,21 @@ function draw() {
             visited[i].value=false;
             visited[i].prev=trig
           }
+        }else if(type=="inputpoints"){
+          visited[i].value=or_func(a)
+        }else if(type=="outputpoints"){
+          print(visited[i].connected_port)
+          print(shapes[a[0]].valuelist)
+          print(shapes[a[0]].valuelist[visited[i].connected_port])
+          visited[i].value=shapes[a[0]].valuelist[visited[i].connected_port]
+        }else if(type=="ALU"){
+          console.log("alu",a)
+          visited[i].valuelist=alu_func(a)
+        }else if(type=="MEMORY"){
+          console.log("memory",a)
+          if(shapes[a[8]].value){
+          visited[i].valuelist=memory_func(a)}
         }
-        
     }
   }
   counter=(counter+1)%100000;

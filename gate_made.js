@@ -95,4 +95,91 @@ function and(){
   }
   
    
+  function alu(){
+    findstartpos();print(shapes);
+    
+    shp=new Alu(startpos+40, 40, 50, 50,shpcount,"ALU",255, 18, 164);
+    let themain=shpcount;
+    shpcount++;
+    shapes.push(shp)
+    
+    print(shapes.length)
+    print(themain)
+    print(shapes[themain])
+    for(let i=0;i<8;i++){
+      let dwn;
+      if(i<4) {dwn=100}
+      else {dwn=90}
+      
+      shp=new input_ports(shapes[themain].input[0]-22, shapes[themain].input[1]+(i*20)-100,shpcount,i,dwn);
+      shp.setoutput(themain)
+      shapes[themain].setinput(shpcount)
+      shpcount++;
+      shapes.push(shp)
+    }
+    let i=8
+    shp=new input_ports(shapes[themain].input[0]-22, shapes[themain].input[1]+(i*20)-100,shpcount,i,80);
+    shp.setoutput(themain)
+    shapes[themain].setinput(shpcount)
+    shpcount++;
+    shapes.push(shp)
+    print(shapes.length)
+    print(shapes)
+
+    for(let i=0;i<5;i++){
+      shp=new output_ports(shapes[themain].output[0]+22, shapes[themain].output[1]+(i*20)-100,shpcount,i,50);
+      shp.setinput(themain)
+      shapes[themain].setoutput(shpcount)
+      shpcount++;
+      shapes.push(shp)
+    }
+    print(shapes.length)
+    print(shapes)
+
+    
+  }
+  
+  
+   
+  function register(){
+    findstartpos();print(shapes);
+    
+    shp=new Memory(startpos+40, 40, 110, 50,shpcount,"register",120, 44, 0);
+    let themain=shpcount;
+    shpcount++;
+    shapes.push(shp)
+    
+    print(shapes.length)
+    print(themain)
+    print(shapes[themain])
+    for(let i=0;i<8;i++){
+      let dwn=90;
+      
+      shp=new input_ports(shapes[themain].input[0]-22, shapes[themain].input[1]+(i*20)-100,shpcount,i,dwn);
+      shp.setoutput(themain)
+      shapes[themain].setinput(shpcount)
+      shpcount++;
+      shapes.push(shp)
+    }
+    let i=8
+    shp=new input_ports(shapes[themain].input[0]-22, shapes[themain].input[1]+(i*20)-100,shpcount,i,80);
+    shp.setoutput(themain)
+    shapes[themain].setinput(shpcount)
+    shpcount++;
+    shapes.push(shp)
+    print(shapes.length)
+    print(shapes)
+
+    for(let i=0;i<8;i++){
+      shp=new output_ports(shapes[themain].output[0]+22, shapes[themain].output[1]+(i*20)-100,shpcount,i,80);
+      shp.setinput(themain)
+      shapes[themain].setoutput(shpcount)
+      shpcount++;
+      shapes.push(shp)
+    }
+    print(shapes.length)
+    print(shapes)
+
+    
+  }
   
