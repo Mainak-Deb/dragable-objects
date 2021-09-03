@@ -256,7 +256,7 @@ class joint {
     this.current_pos=index;
     this.x = x;
     this.y = y;
-    this.w = 22;
+    this.w = 26;
     this.h = 20;
     this.offsetX = 0;
     this.offsetY = 0;
@@ -381,6 +381,14 @@ setoutput(x){
   pressed(state) {
     // Did I click on the rectangle?
     if(!run){
+      if (mouseX > this.input[0]-this.port/2 && mouseX < this.input[0]+this.port/2 && mouseY > this.input[1]-this.port/2 && mouseY < this.input[1]+this.port/2) {
+        print(this.current_pos)
+          return [this.current_pos,"input"]
+      } 
+      if (mouseX > this.output[0]-this.port/2 && mouseX < this.output[0]+this.port/2 && mouseY > this.output[1]-this.port/2 && mouseY < this.output[1]+this.port/2) {
+        print(this.current_pos)
+        return [this.current_pos,"output"]
+      }
     if (mouseX > this.x && mouseX < this.x + this.w && mouseY > this.y && mouseY < this.y + this.h) {
       this.dragging = true;
       
@@ -390,14 +398,7 @@ setoutput(x){
       return null
       
     }
-    if (mouseX > this.input[0]-this.port/2 && mouseX < this.input[0]+this.port/2 && mouseY > this.input[1]-this.port/2 && mouseY < this.input[1]+this.port/2) {
-      print(this.current_pos)
-        return [this.current_pos,"input"]
-    } 
-    if (mouseX > this.output[0]-this.port/2 && mouseX < this.output[0]+this.port/2 && mouseY > this.output[1]-this.port/2 && mouseY < this.output[1]+this.port/2) {
-      print(this.current_pos)
-      return [this.current_pos,"output"]
-    } }
+     }
   }
 
   released() {
@@ -1011,6 +1012,10 @@ setoutput(x){
   pressed(state) {
     // Did I click on the rectangle?
     if(!run){
+      if (mouseX > this.input[0]-this.port/2 && mouseX < this.input[0]+this.port/2 && mouseY > this.input[1]-this.port/2 && mouseY < this.input[1]+this.port/2) {
+        print(this.current_pos)
+          return [this.current_pos,"input"]
+      } 
     if (mouseX > this.x && mouseX < this.x + this.w && mouseY > this.y && mouseY < this.y + this.h) {
       this.dragging = true;
       
@@ -1020,10 +1025,7 @@ setoutput(x){
       return null
       
     }
-    if (mouseX > this.input[0]-this.port/2 && mouseX < this.input[0]+this.port/2 && mouseY > this.input[1]-this.port/2 && mouseY < this.input[1]+this.port/2) {
-      print(this.current_pos)
-        return [this.current_pos,"input"]
-    } 
+    
     }
   }
 
@@ -1154,6 +1156,11 @@ setoutput(x){
   pressed(state) {
     // Did I click on the rectangle?
     if(!run){
+       
+    if (mouseX > this.output[0]-this.port/2 && mouseX < this.output[0]+this.port/2 && mouseY > this.output[1]-this.port/2 && mouseY < this.output[1]+this.port/2) {
+      print(this.current_pos)
+      return [this.current_pos,"output"]
+    } 
     if (mouseX > this.x && mouseX < this.x + this.w && mouseY > this.y && mouseY < this.y + this.h) {
       this.dragging = true;
       
@@ -1163,11 +1170,7 @@ setoutput(x){
       return null
       
     }
-    
-    if (mouseX > this.output[0]-this.port/2 && mouseX < this.output[0]+this.port/2 && mouseY > this.output[1]-this.port/2 && mouseY < this.output[1]+this.port/2) {
-      print(this.current_pos)
-      return [this.current_pos,"output"]
-    } }
+   }
   }
 
   released() {
