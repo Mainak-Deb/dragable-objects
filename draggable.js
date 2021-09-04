@@ -2040,7 +2040,7 @@ setoutput(x){
 
 class Multiply {
   constructor(x, y, w, h,index,tx,r,g,b) {
-    this.txt ="MULTIPLY";
+    this.txt ="MULTIPLIER";
     this.dragging = false; // Is the object being dragged?
     this.rollover = false; // Is the mouse over the ellipse?
     this.input_rollover = false; 
@@ -2171,7 +2171,7 @@ setoutput(x){
 
 
     fill(0, 0, 0);
-    textSize(24);
+    textSize(20);
     text(this.txt,this.x+4, this.y+(this.h/2)+6);
     
    
