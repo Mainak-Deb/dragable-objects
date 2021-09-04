@@ -62,6 +62,7 @@ function bfs(){
   
   
 function mousePressed() {
+  if(mouseY>80){
     for(i=0;i<shpcount;i++){
       now=shapes[i].pressed(run);
       
@@ -106,6 +107,7 @@ function mousePressed() {
         }
       }
     }
+  }
   }
 
 function mouseReleased() {

@@ -10,7 +10,7 @@ let state=false
 let connect;
 let visited=[]
 let queue=[]
-let lights=50
+let lights=80
 let connect_type;
 let connect_port_number;
 let mainconnect;
@@ -27,7 +27,7 @@ let gridline=[0, 157, 230]
 
 
 function setup() {
-  createCanvas(1540, 65*lights);
+  createCanvas(1540, 44*lights);
   
   andb = createButton('AND');
   andb.position(0, 108);
@@ -85,14 +85,34 @@ function setup() {
   triggerb.position(552, 108);
   triggerb.mousePressed(edge_triggering);
   
-  alub = createButton('ALU');
-  alub.position(612, 108);
+  alub = createButton('4-bit ALU');
+  alub.position(0, 140);
   alub.mousePressed(alu);
   
   memoryb = createButton('8-bit memory');
-  memoryb.position(662, 108);
+  memoryb.position(74, 140);
   memoryb.mousePressed(register);
   
+  muxb = createButton('8x1 MUX');
+  muxb.position(172, 140);
+  muxb.mousePressed(multiplexer);
+
+  demuxb = createButton('1x8 DEMUX');
+  demuxb.position(246, 140);
+  demuxb.mousePressed(demultiplexer);
+
+  encodeb = createButton('8x3 Encoder');
+  encodeb.position(340, 140);
+  encodeb.mousePressed(encoder);
+
+  decodeb = createButton('3x8 Decoder');
+  decodeb.position(440, 140);
+  decodeb.mousePressed(decoder);
+
+  multib = createButton('8-bit Multiplier');
+  multib.position(540, 140);
+  multib.mousePressed(Multiplier);
+
 
   runb = createButton('Grid');
   runb.position(width-270, 108);
@@ -120,12 +140,12 @@ function setup() {
 
 
   for(i=0;i<lights;i++){
-    shp=new NODE(20,120+ i*60,shpcount);
+    shp=new NODE(20,160+ i*40,shpcount);
     shapes.push(shp)
     shpcount++;
   }
   for(i=0;i<lights;i++){
-    shp=new NODE(width-40,120+ i*60,shpcount);
+    shp=new NODE(width-40,160+ i*40,shpcount);
     shapes.push(shp)
     shpcount++;
   }
@@ -148,17 +168,19 @@ function draw() {
     }
   }
 
-
+  
   fill(0)
   stroke(255)
-  rect(0,0,width,40)
+  rect(-2,0,width,80)
   stroke(0)
+
+  
   strokeWeight(4)
   fill(55)
-  rect(0,32,50,height)
-  rect(width-60,32,60,height)
+  rect(0,68,50,height)
+  rect(width-60,68,60,height)
   fill(255)
-  rect(0,32,width,68)
+  rect(0,68,width,68)
   
   
 
@@ -279,6 +301,16 @@ function draw() {
           console.log("memory",a)
           if(shapes[a[8]].value){
           visited[i].valuelist=memory_func(a)}
+        }else if(type=="MUX"){
+          visited[i].value=mux_func(a)
+        }else if(type=="DEMUX"){
+          visited[i].valuelist=demux_func(a)
+        }else if(type=="ENCODER"){
+          visited[i].valuelist=encoder_func(a)
+        }else if(type=="DECODER"){
+          visited[i].valuelist=decoder_func(a)
+        }else if(type=="MULTIPLY"){
+          visited[i].valuelist=multiply_func(a)
         }
     }
   }

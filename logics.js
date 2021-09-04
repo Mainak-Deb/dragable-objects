@@ -146,3 +146,107 @@ function memory_func(a){
     }
     return ans;
 }
+
+function mux_func(a){
+    ans=[]
+    for(let i=8;i<11;i++){
+        ans.push(shapes[a[i]].value)
+    }
+    print(ans)
+    let val=arr_to_str_mem(ans)
+    print(val)
+    let b=parseInt(bin2dec(val))
+    print(b)
+    print(shapes[a[b]].value)
+    return shapes[a[b]].value;
+}
+
+function demux_func(a){
+    ans=[false,false,false,false,false,false,false,false]
+    bin=[]
+    for(let i=1;i<4;i++){
+        bin.push(shapes[a[i]].value)
+    }
+    let val=arr_to_str_mem(bin)
+    print(val)
+    let b=parseInt(bin2dec(val))
+    print(b)
+    ans[b]=shapes[a[0]].value
+    return ans;
+}
+
+
+function encoder_func(a){
+    console.clear()
+    let ans=[false,false,false]
+    if(shapes[a[8]].value){
+        let bin=0;
+        for(let i=0;i<8;i++){
+            if(shapes[a[i]].value){
+                bin=i;break;
+            }
+        }
+        let b=dec2bin(bin)
+        if(b.length==1){b="00"+b}
+        else if(b.length==2){b="0"+b}
+        print(b)
+        for(let i=0;i<=b.length;i++){
+            if(b[i]=="1"){
+                ans[i]=true
+            }else{
+                ans[i]=false
+            }
+        }
+        print(ans)}
+    return ans;
+}
+
+function decoder_func(a){
+    console.clear()
+    ans=[false,false,false,false,false,false,false,false]
+    bin=[]
+    for(let i=0;i<3;i++){
+        bin.push(shapes[a[i]].value)
+    }
+    let val=arr_to_str_mem(bin)
+    print("DECODER",val)
+    let b=parseInt(bin2dec(val))
+    print(b)
+    ans[b]=shapes[a[3]].value
+    return ans;
+}
+
+
+function multiply_func(a){
+    console.clear()
+    ans=[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false]
+    let m1=[],m2=[];
+    for(let i=0;i<8;i++){
+        m1.push(shapes[a[i]].value)
+    }
+    for(let i=8;i<16;i++){
+        m2.push(shapes[a[i]].value)
+    }
+    console.log(m1,m2)
+    let val=arr_to_str_mem(m1)
+    let b1=parseInt(bin2dec(val))
+    let val2=arr_to_str_mem(m2)
+    let b2=parseInt(bin2dec(val2))
+
+    console.log(b1,b2)
+    let mul=b1*b2;
+    mul=parseInt(mul)
+
+    let bin=dec2bin(mul)
+    print(bin)
+
+    for(let i=0;i<bin.length;i++){
+        if(bin[bin.length-1-i]=="1"){
+            ans[ans.length-1-i]=true
+        }else{
+            ans[ans.length-1-i]=false
+        }
+    }
+
+    return ans;
+}
