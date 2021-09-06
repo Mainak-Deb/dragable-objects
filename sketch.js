@@ -26,34 +26,35 @@ let gridline=[0, 157, 230]
 
 
 
+
 function setup() {
   createCanvas(1540, 44*lights);
   
-  andb = createButton('AND');
+  andb = createButton('AND',true,'rgb(230, 5, 207)');
   andb.position(0, 108);
   andb.mousePressed(and);
   
-  orb = createButton('OR');
+  orb = createButton('OR',true,'rgb(156, 0, 252)');
   orb.position(45, 108);
   orb.mousePressed(or);
   
-  notb = createButton('NOT');
+  notb = createButton('NOT',true,'rgb(0, 113, 252)');
   notb.position(82, 108);
   notb.mousePressed(not);
   
-  xorb = createButton('XOR');
+  xorb = createButton('XOR',true,'rgb(20, 244, 252)');
   xorb.position(128, 108);
   xorb.mousePressed(xor);
   
-  nandb = createButton('NAND');
+  nandb = createButton('NAND',true,'rgb(0, 252, 189)');
   nandb.position(174, 108);
   nandb.mousePressed(nand);
   
-  norb = createButton('NOR');
+  norb = createButton('NOR',true,'rgb(49, 245, 91)');
   norb.position(230, 108);
   norb.mousePressed(nor);
   
-  xnorb = createButton('XNOR');
+  xnorb = createButton('XNOR',true,'rgb(113, 255, 25)');
   xnorb.position(277, 108);
   xnorb.mousePressed(xnor);
   
@@ -61,17 +62,17 @@ function setup() {
 
 
 
-  jointb = createButton('Joint');
+  jointb = createButton('Joint',true,'rgb(240, 232, 2)');
   jointb.position(354, 108);
   jointb.mousePressed(joinnode);
   
   
-  displayb = createButton('Display');
+  displayb = createButton('Display',true,'rgb(255, 157, 10)');
   displayb.position(400, 108);
   displayb.mousePressed(display);
   
   
-  clockb = createButton('Clock');
+  clockb = createButton('Clock',true,'rgb(255, 0, 0)');
   clockb.position(462, 108);
   clockb.mousePressed(clock);
   
@@ -81,59 +82,59 @@ function setup() {
   clockinput.input(setclockspeed);
 
   
-  triggerb = createButton('Trigger');
+  triggerb = createButton('Trigger',true,'rgb(255, 0, 115)');
   triggerb.position(552, 108);
   triggerb.mousePressed(edge_triggering);
   
-  alub = createButton('4-bit ALU');
+  alub = createButton('8-bit ALU',true,'#FD6F96');
   alub.position(0, 140);
   alub.mousePressed(alu);
   
-  memoryb = createButton('8-bit memory');
+  memoryb = createButton('8-bit memory',true,'#FFEBA1');
   memoryb.position(74, 140);
   memoryb.mousePressed(register);
   
-  muxb = createButton('8x1 MUX');
+  muxb = createButton('8x1 MUX',true,'#95DAC1');
   muxb.position(172, 140);
   muxb.mousePressed(multiplexer);
 
-  demuxb = createButton('1x8 DEMUX');
+  demuxb = createButton('1x8 DEMUX',true,'#6F69AC');
   demuxb.position(246, 140);
   demuxb.mousePressed(demultiplexer);
 
-  encodeb = createButton('8x3 Encoder');
+  encodeb = createButton('8x3 Encoder',true,'#FFC2E9');
   encodeb.position(340, 140);
   encodeb.mousePressed(encoder);
 
-  decodeb = createButton('3x8 Decoder');
+  decodeb = createButton('3x8 Decoder',true,'#DB996C');
   decodeb.position(440, 140);
   decodeb.mousePressed(decoder);
 
-  multib = createButton('8-bit Multiplier');
+  multib = createButton('8-bit Multiplier',true,'#B3E283');
   multib.position(540, 140);
   multib.mousePressed(Multiplier);
 
 
-  runb = createButton('Grid');
-  runb.position(width-270, 108);
-  runb.mousePressed(gridthis);
+  gridb = createButton('Grid',true,'#FF2442');
+  gridb.position(width-270, 108);
+  gridb.mousePressed(gridthis);
   
   
   
-  runb = createButton('▶run');
+  runb = createButton('▶run',true,'#FFB830');
   runb.position(width-220, 108);
   runb.mousePressed(runthis);
   
   
   
-  undo = createButton('↩undo');
+  undo = createButton('↩undo',true,'#FFEDDA');
   undo.position(width-170, 108);
   undo.mousePressed(undothis);
   
 
   
   
-  redo = createButton('↪redo');
+  redo = createButton('↪redo',true,'#3DB2FF');
   redo.position(width-110, 108);
   redo.mousePressed(redothis);
   
@@ -316,6 +317,3 @@ function draw() {
   }
   counter=(counter+1)%100000;
 }
-
-
-

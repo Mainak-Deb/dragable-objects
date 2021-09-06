@@ -113,12 +113,12 @@ function alu_func(a){
     add2=""
     let decide=shapes[a[a.length-1]].value
     let ret;
-    ans=[false,false,false,false,false];
-    for(let i=0;i<4;i++){
+    ans=[false,false,false,false,false,false,false,false,false];
+    for(let i=0;i<8;i++){
         if(shapes[a[i]].value){add1=add1+"1"}
         else{add1=add1+"0"}
 
-        if(shapes[a[i+4]].value){add2=add2+"1"}
+        if(shapes[a[i+8]].value){add2=add2+"1"}
         else{add2=add2+"0"}
     }
     console.log("add1",add1,"add2",add2);
@@ -130,7 +130,7 @@ function alu_func(a){
     }
     print(ret)
     ret=dec2bin(String(ret))
-    for(let i=0;i<5;i++){
+    for(let i=0;i<9;i++){
         if(ret[ret.length-1-i]=="1"){ans[ans.length-1-i]=true;print("1")}
     }
     print(ans)

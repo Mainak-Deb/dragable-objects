@@ -106,10 +106,10 @@ function and(){
     print(shapes.length)
     print(themain)
     print(shapes[themain])
-    for(let i=0;i<8;i++){
+    for(let i=0;i<16;i++){
       let dwn;
-      if(i<4) {dwn=100}
-      else {dwn=90}
+      if(i<8) {dwn=150}
+      else {dwn=140}
       
       shp=new input_ports(shapes[themain].input[0]-22, shapes[themain].input[1]+(i*20)-100,shpcount,i,dwn);
       shp.setoutput(themain)
@@ -117,8 +117,8 @@ function and(){
       shpcount++;
       shapes.push(shp)
     }
-    let i=8
-    shp=new input_ports(shapes[themain].input[0]-22, shapes[themain].input[1]+(i*20)-100,shpcount,i,80);
+    let i=16
+    shp=new input_ports(shapes[themain].input[0]-22, shapes[themain].input[1]+(i*20)-100,shpcount,i,120);
     shp.setoutput(themain)
     shapes[themain].setinput(shpcount)
     shpcount++;
@@ -126,8 +126,8 @@ function and(){
     print(shapes.length)
     print(shapes)
 
-    for(let i=0;i<5;i++){
-      shp=new output_ports(shapes[themain].output[0]+22, shapes[themain].output[1]+(i*20)-100,shpcount,i,50);
+    for(let i=0;i<9;i++){
+      shp=new output_ports(shapes[themain].output[0]+22, shapes[themain].output[1]+(i*20)-100,shpcount,i,80);
       shp.setinput(themain)
       shapes[themain].setoutput(shpcount)
       shpcount++;
